@@ -1,6 +1,6 @@
-import React, {Component} from "react"
+import React from "react"
 import axios from "axios";
- export default class CreateUser extends Component{
+ export default class CreateUser extends React.Component{
 
     constructor(props){
         super(props)
@@ -10,16 +10,16 @@ import axios from "axios";
     this.onChangeUsername = this.onChangeUsername.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     }
-    onChangeUsername(e){
-        this.setState({username:e.target.value})
+    onChangeUsername=(event)=>{
+        this.setState({username:event.target.value})
     }
 
-    onSubmit(e){
-        e.preventDefault()
+    onSubmit=(event)=>{
+        event.preventDefault()
         const user = {
             username : this.state.username,
         }
-        console.log(user);
+       // console.log(user);
         
         axios.post("http://localhost:5000/users/add",user)
             .then((res) => console.log(res.data))

@@ -1,8 +1,8 @@
-import React, {Component} from "react"
+import React from "react"
 import DatePicker from "react-datepicker"
 import axios from "axios"
 import "react-datepicker/dist/react-datepicker.css"
- export default class CreateExercise extends Component{
+ export default class CreateExercise extends React.Component{
 
     constructor(props){
         super(props)
@@ -19,8 +19,8 @@ import "react-datepicker/dist/react-datepicker.css"
     this.onChangeDate = this.onChangeDate.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
 }
-    onChangeUsername(e){
-        this.setState({username:e.target.value})
+    onChangeUsername(event){
+        this.setState({username:event.target.value})
     }
 
     onChangeDescription(e){
@@ -33,7 +33,7 @@ import "react-datepicker/dist/react-datepicker.css"
         this.setState({date:date})
     }
 
-    onSubmit(e){
+    onSubmit =(e)=>{
         e.preventDefault()
         const exercise = {
             username : this.state.username,
@@ -41,7 +41,7 @@ import "react-datepicker/dist/react-datepicker.css"
             duration : this.state.duration,
             date : this.state.date,
         }
-        console.log(exercise);
+        //console.log(exercise);
         
         axios.post("http://localhost:5000/exercise/add", exercise)
             .then((res) => {console.log(res.data);})
@@ -65,7 +65,7 @@ import "react-datepicker/dist/react-datepicker.css"
      render(){
          return(
              <div>
-                 <h3>Create New Exercise Log</h3>
+                 <h4>Create New Exercise Log</h4>
                  <form onSubmit={this.onSubmit}>
                      <div className="form-group">
                          <label>Username:</label>
